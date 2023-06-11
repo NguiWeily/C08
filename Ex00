@@ -1,0 +1,63 @@
+Files to turn in : ft.h
+Allowed functions : None
+
+• Create your ft.h file.
+• It contains all prototypes of functions :
+void ft_putchar(char c);
+void ft_swap(int *a, int *b);
+void ft_putstr(char *str);
+int ft_strlen(char *str);
+int ft_strcmp(char *s1, char *s2);
+
+Here's an example implementation of the `ft.h` file:
+
+```c
+#ifndef FT_H
+# define FT_H
+
+void ft_putchar(char c);
+void ft_swap(int *a, int *b);
+void ft_putstr(char *str);
+int ft_strlen(char *str);
+int ft_strcmp(char *s1, char *s2);
+
+#endif
+```
+
+You can adjust the function prototypes and add any additional function prototypes you need in your project. Just make sure to include the necessary headers and guard the header file with the `#ifndef` and `#define` directives to prevent multiple inclusions.
+
+The `ft.h` file is a header file that contains function prototypes. It is typically included in source code files where the corresponding functions are implemented. Therefore, there is no specific test program for the `ft.h` file itself. However, I can provide an example test program that includes the `ft.h` header and calls some of the functions defined in it. Here's an example:
+
+```c
+#include "ft.h"
+
+int main() {
+    // Test ft_putchar
+    ft_putchar('A');
+
+    // Test ft_swap
+    int a = 5;
+    int b = 10;
+    ft_swap(&a, &b);
+    printf("a: %d, b: %d\n", a, b);
+
+    // Test ft_putstr
+    char str[] = "Hello, world!";
+    ft_putstr(str);
+
+    // Test ft_strlen
+    char str2[] = "This is a test";
+    int len = ft_strlen(str2);
+    printf("Length: %d\n", len);
+
+    // Test ft_strcmp
+    char s1[] = "abc";
+    char s2[] = "def";
+    int cmp = ft_strcmp(s1, s2);
+    printf("Comparison: %d\n", cmp);
+
+    return 0;
+}
+```
+
+In this test program, we include the `ft.h` header file, and then we call the functions `ft_putchar`, `ft_swap`, `ft_putstr`, `ft_strlen`, and `ft_strcmp` to test their functionality. You can modify the program and add more tests as needed for your specific functions.

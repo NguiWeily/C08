@@ -1,0 +1,99 @@
+Files to turn in : ft_show_tab.c
+Allowed functions : write
+
+• Create a function that displays the content of the array created by the previous
+function.
+• Here’s how it should be prototyped :
+void ft_show_tab(struct s_stock_str *par);
+
+• The structure will be the same as the previous exercise and will be defined in the
+ft_stock_str.h file
+• For each element, we’ll display:
+◦ the string followed by a ’\n’
+◦ the size followed by a ’\n’
+◦ the copy of the string (that could have been modified) followed by a ’\n’
+• We’ll test your function with our ft_strs_to_tab (previous exercise). Make it
+work according to this !
+
+Here's an implementation of the `ft_show_tab` function that displays the content of the array of `t_stock_str` structures:
+
+```c
+#include <unistd.h>
+#include "ft_stock_str.h"
+
+void ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void ft_putstr(char *str)
+{
+	while (*str)
+	{
+		ft_putchar(*str);
+		str++;
+	}
+}
+
+void ft_putnbr(int nb)
+{
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		ft_putchar(nb + '0');
+	}
+}
+
+void ft_show_tab(struct s_stock_str *par)
+{
+	int i = 0;
+	while (par[i].str != 0)
+	{
+		ft_putstr(par[i].str);
+		ft_putchar('\n');
+		ft_putnbr(par[i].size);
+		ft_putchar('\n');
+		ft_putstr(par[i].copy);
+		ft_putchar('\n');
+		i++;
+	}
+}
+```
+
+This implementation defines helper functions `ft_putchar`, `ft_putstr`, and `ft_putnbr` to handle character and number output. The `ft_show_tab` function iterates over the array of `t_stock_str` structures and displays the content of each structure as specified in the exercise.
+
+Make sure to include the `ft_stock_str.h` file and have the necessary functions implemented to use the `ft_show_tab` function.
+
+Here's an example test program for the `ft_show_tab` function using the `ft_strs_to_tab` function to create an array of `t_stock_str` structures:
+
+```c
+#include "ft_stock_str.h"
+
+struct s_stock_str *ft_strs_to_tab(int ac, char **av);
+
+int main(void)
+{
+	char *strs[] = {"Hello", "World", "OpenAI", "ChatGPT"};
+	int size = sizeof(strs) / sizeof(strs[0]);
+
+	struct s_stock_str *tab = ft_strs_to_tab(size, strs);
+
+	ft_show_tab(tab);
+
+	return 0;
+}
+```
+
+In this test program, we create an array of strings `strs` and use the `ft_strs_to_tab` function to convert it into an array of `t_stock_str` structures `tab`. Then, we call the `ft_show_tab` function to display the content of the `tab` array.
+
+Make sure to include the necessary header files and have the `ft_strs_to_tab` and `ft_show_tab` functions properly implemented in order to run this test program successfully.

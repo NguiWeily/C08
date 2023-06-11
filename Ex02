@@ -1,0 +1,46 @@
+Files to turn in : ft_abs.h
+Allowed functions : None
+
+• Create a macro ABS which replaces its argument by it absolute value :
+#define ABS(Value)
+
+Here's the content of the `ft_abs.h` file:
+
+```c
+#ifndef FT_ABS_H
+# define FT_ABS_H
+
+# define ABS(Value) ((Value < 0) ? -(Value) : (Value))
+
+#endif
+```
+
+The `ft_abs.h` file defines a macro `ABS` that takes an argument `Value` and returns its absolute value. It uses the ternary operator `(Value < 0) ? -(Value) : (Value)` to determine whether the value is negative and returns the negation if true, otherwise returns the value itself.
+
+You can include this header file in your program to use the `ABS` macro for calculating the absolute value of a number.
+
+Certainly! Here's a test program that demonstrates the usage of the `ft_abs.h` file:
+
+```c
+#include <stdio.h>
+#include "ft_abs.h"
+
+int main(void) {
+    int num = -42;
+    int absNum = ABS(num);
+
+    printf("The absolute value of %d is %d\n", num, absNum);
+
+    return 0;
+}
+```
+
+In this test program, we include the `ft_abs.h` header file and use the `ABS` macro to calculate the absolute value of the variable `num`. We then print the original number and its absolute value to the console.
+
+When you run this program, it should output:
+
+```
+The absolute value of -42 is 42
+```
+
+This demonstrates how the `ft_abs.h` file can be used to calculate the absolute value of a number using the `ABS` macro.

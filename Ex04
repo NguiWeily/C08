@@ -1,0 +1,123 @@
+Files to turn in : ft_strs_to_tab.c
+Allowed functions : malloc, free
+
+• Create a function that takes an array of string as argument and the size of this
+array.
+• Here’s how it should be prototyped :
+struct s_stock_str *ft_strs_to_tab(int ac, char **av);
+
+• It will transform each element of av into a structure.
+• The structure will be defined in the ft_stock_str.h file that we will provided, like
+this :
+typedef struct s_stock_str
+{
+int size;
+char *str;
+char *copy;
+} t_stock_str;
+
+◦ size being the length of the string;
+◦ str being string;
+◦ copy being a copy of the string ;
+• It should keep the order of av.
+
+• The returned array should allocated in memory and its last element’s str set to 0,
+this will mark the end of the array.
+• It should return a NULL pointer if an error occurs.
+
+• We’ll test your function with our ft_show_tab (next exercise). Make it work ac-
+cording to this !
+
+Here's the implementation of the `ft_strs_to_tab` function:
+
+```c
+#include <stdlib.h>
+#include "ft_stock_str.h"
+
+int ft_strlen(char *str)
+{
+	int len = 0;
+	while (str[len])
+		len++;
+	return len;
+}
+
+char *ft_strdup(char *src)
+{
+	int len = ft_strlen(src);
+	char *dest = (char *)malloc((len + 1) * sizeof(char));
+	if (dest == NULL)
+		return NULL;
+	int i;
+	for (i = 0; i < len; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return dest;
+}
+
+struct s_stock_str *ft_strs_to_tab(int ac, char **av)
+{
+	struct s_stock_str *arr = (struct s_stock_str *)malloc((ac + 1) * sizeof(struct s_stock_str));
+	if (arr == NULL)
+		return NULL;
+
+	int i;
+	for (i = 0; i < ac; i++)
+	{
+		arr[i].size = ft_strlen(av[i]);
+		arr[i].str = av[i];
+		arr[i].copy = ft_strdup(av[i]);
+	}
+
+	arr[i].str = 0;
+
+	return arr;
+}
+```
+
+The `ft_strs_to_tab` function takes an array of strings `av` and the size of this array `ac` as arguments. It transforms each element of `av` into a structure of type `t_stock_str` defined in the `ft_stock_str.h` file. It allocates memory for the array of structures and copies the necessary data. The last element's `str` field is set to 0 to mark the end of the array. If any error occurs during memory allocation, it returns a NULL pointer.
+
+Please make sure to include the `ft_stock_str.h` file in your program, which defines the `t_stock_str` structure.
+
+To test the `ft_strs_to_tab` function, you can use the following test program:
+
+```c
+#include <stdio.h>
+#include "ft_stock_str.h"
+
+void ft_show_tab(struct s_stock_str *par);
+
+int main(void)
+{
+	char *strs[] = {
+		"Hello",
+		"World",
+		"OpenAI",
+		"ChatGPT",
+		NULL
+	};
+
+	int size = sizeof(strs) / sizeof(strs[0]) - 1;
+
+	struct s_stock_str *tab = ft_strs_to_tab(size, strs);
+	if (tab == NULL)
+	{
+		printf("Error: Memory allocation failed.\n");
+		return 1;
+	}
+
+	ft_show_tab(tab);
+
+	// Free memory
+	int i;
+	for (i = 0; i < size; i++)
+		free(tab[i].copy);
+	free(tab);
+
+	return 0;
+}
+```
+
+In this test program, we create an array of strings `strs` and determine its size. We then call the `ft_strs_to_tab` function with the size and array of strings as arguments to create the array of `t_stock_str` structures. If the function returns a NULL pointer, we print an error message. Otherwise, we call the `ft_show_tab` function to display the contents of the array of structures. Finally, we free the allocated memory.
+
+Make sure to include the `ft_stock_str.h` file and have the `ft_show_tab` function implemented to display the contents of the array of structures.

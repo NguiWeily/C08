@@ -1,0 +1,54 @@
+Files to turn in : ft_boolean.h
+Allowed functions : None
+
+• Create a ft_boolean.h file. It’ll compile and run the following main appropriately
+:
+#include "ft_boolean.h"
+void ft_putstr(char *str)
+{
+while (*str)
+write(1, str++, 1);
+
+}
+t_bool ft_is_even(int nbr)
+{
+return ((EVEN(nbr)) ? TRUE : FALSE);
+}
+int main(int argc, char **argv)
+{
+(void)argv;
+if (ft_is_even(argc - 1) == TRUE)
+ft_putstr(EVEN_MSG);
+else
+ft_putstr(ODD_MSG);
+return (SUCCESS);
+}
+
+• This program should display
+I have an even number of arguments.
+• ou
+I have an odd number of arguments.
+
+• followed by a line break when adequate.
+
+Here's the content of the `ft_boolean.h` file:
+
+```c
+#ifndef FT_BOOLEAN_H
+# define FT_BOOLEAN_H
+
+# include <unistd.h>
+
+typedef int	t_bool;
+# define TRUE	1
+# define FALSE	0
+# define SUCCESS	0
+# define EVEN_MSG	"I have an even number of arguments.\n"
+# define ODD_MSG	"I have an odd number of arguments.\n"
+
+#endif
+```
+
+The `ft_boolean.h` file defines the `t_bool` type as an `int` and defines the constants `TRUE`, `FALSE`, `SUCCESS`, `EVEN_MSG`, and `ODD_MSG`. These constants are used in the provided `main` function to determine whether the number of command-line arguments is even or odd and display the appropriate message using the `ft_putstr` function.
+
+You can compile and run the program using the provided `main` function and include the `ft_boolean.h` header file.
